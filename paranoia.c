@@ -219,9 +219,15 @@
 
 */
 
+#if HAVE_CONFIG_H
+#  include "config.h"
+#else
+#  error "missing config.h"
+#endif
+
 #include <stdio.h>
-#ifndef NOSIGNAL
-#include <signal.h>
+#if HAVE_SIGNAL_H
+#  include <signal.h>
 #endif
 #include <setjmp.h>
 
@@ -396,7 +402,7 @@ sigfpe(INT x)
     exit(1);
 }
 
-main(VOID)
+int main(VOID)
 {
     /* First two assignments use integer right-hand sides. */
     Zero = 0;
